@@ -81,21 +81,21 @@ $sequence = 0;
                         $gate_out = '16:00';
                     ?>
                     <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
-                        <?php $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("from_unixtime(`time`, '%Y-%M-%D') = '".$date_formatted."'"))->all(); ?>
+                        <?php $presences = Presence::find()->where(['user_id' => $user->id])/* ->andWhere(new \yii\db\Expression("from_unixtime(`time`, '%Y-%M-%D') = '".$date_formatted."'")) */->all(); ?>
                         <?php if ($presences) { $count[$i]++; ?>
                         <table>
                             <tr>
                             <?php $presenceFirst = Presence::find()->where(['user_id' => $user->id, 'date' => $date_formatted])->andWhere(['<=', 'time', '12:00:00'])->orderBy('id ASC')->one(); ?>
                             <?php if ($presenceFirst) { ?>
                                 <td style="padding-right: 16px;">
-                                    <?= Yii::$app->formatter->asTime($presenceFirst->time, 'short') ?>
+                                    <?= Yii::$app->formatter->asDatetime($presenceFirst->time, 'short') ?>
                                     <br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                                 </td>
                             <?php } ?>
                             <?php $presenceLast = Presence::find()->where(['user_id' => $user->id, 'date' => $date_formatted])->andWhere(['>', 'time', '12:00:00'])->orderBy('id DESC')->one(); ?>
                             <?php if ($presenceLast) { ?>
                                 <td style="padding-right: 16px;">
-                                    <?= Yii::$app->formatter->asTime($presenceLast->time, 'short') ?>
+                                    <?= Yii::$app->formatter->asDatetime($presenceLast->time, 'short') ?>
                                     <br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                                 </td>
                             <?php } ?>
