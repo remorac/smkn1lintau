@@ -139,10 +139,4 @@ class PresenceController extends Controller
             'data'    => [],
         ];
     }
-    
-    public function actionDownloadPhoto($id)
-    {
-        $model = Presence::findOne($id);
-        return downloadFilePresence($model, 'photo');
-    }
 }

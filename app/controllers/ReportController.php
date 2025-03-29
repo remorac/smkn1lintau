@@ -39,7 +39,7 @@ class ReportController extends Controller
     public function actionDownloadPhoto($id)
     {
         $model = Presence::findOne($id);
-        // return downloadFilePresence($model, 'photo');
+        return downloadFilePresence($model, 'photo');
     }
 
     public function actionOne($year = null, $month = null, $user_id = null)
