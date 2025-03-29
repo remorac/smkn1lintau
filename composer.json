@@ -21,7 +21,8 @@
         "twbs/bootstrap-icons": "^1.11",
         "matomo/device-detector": "^6.4",
         "creocoder/yii2-flysystem": "^1.0",
-        "league/flysystem-aws-s3-v3": "^1.0"
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "superbalist/flysystem-google-storage": "^7.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
