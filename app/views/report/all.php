@@ -60,11 +60,11 @@ $sequence = 0;
                 <?php } ?>
                 <th class="text-right">Jumlah</th>
             </tr>
-        <?php foreach ($users as $user) { $counter = 0; $sequence++; $sum_late = 0; ?>
-        <?php $is_intern = in_array($user->id, $interns); ?>
+        <?php foreach ($users as $user) { ?>
+        <?php $counter = 0; $sequence++; $sum_late = 0; ?>
             <tr>
                 <td><?= $sequence ?></td>
-                <td><?= Html::a($user->complete_name, ['/presence/report', 'user_id' => $user->id, 'month' => $month, 'year' => $year], ['target' => '_blank']) ?></td>
+                <td><?= Html::a($user->complete_name, ['/report/one', 'user_id' => $user->id, 'month' => $month, 'year' => $year], ['target' => '_blank']) ?></td>
 
                 <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
                     <?php 
