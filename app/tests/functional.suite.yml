@@ -1,0 +1,5 @@
+suite_namespace: app\tests\functional
+actor: FunctionalTester
+modules:
+    enabled:
+        - Yii2

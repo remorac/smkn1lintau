@@ -1,0 +1,15 @@
+program absensi
+- absensi menggunakan camera smartphone dan geofence
+- laporan rekap absensi per range tanggal
+- akses untuk android via app, dan ios via web
+
+produksi
+- biaya development:  1.500.000
+
+operasional
+- biaya domain:  200.000 * 1 tahun  =   200.000
+- biaya server:  100.000 * 12 bulan = 1.200.000
+
+total biaya tahun pertama:      1.500.000 + 200.000 + 1.200.000 = 2.900.000
+total biaya tahun berikutnya:               200.000 + 1.200.000 = 1.400.000
+
