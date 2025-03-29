@@ -81,7 +81,7 @@ $sequence = 0;
                         $gate_out = '16:00';
                     ?>
                     <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
-                        <?php $presences = Presence::findAll(['user_id' => $user->id, new \yii\db\Expression("from_unixtime(`time`, '%Y-%M-%D')") => $date_formatted]); ?>
+                        <?php $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("from_unixtime(`time`, '%Y-%M-%D') = '".$date_formatted."'))->all(); ?>
                         <?php if ($presences) { $count[$i]++; ?>
                         <table>
                             <tr>
