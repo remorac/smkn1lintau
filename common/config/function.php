@@ -81,7 +81,8 @@ function downloadFilePresence($model, $field, $filename = null)
 {
     if ($model->$field) {
         $extension  = pathinfo($model->$field, PATHINFO_EXTENSION);
-        $filepath   = $model->tableName().'/'.$field.'/'.$model->$field;
+        // $filepath   = $model->tableName().'/'.$field.'/'.$model->$field;
+        $filepath   = 'smkn1lintau/presence/'.$model->$field;
         $filename   = $filename ? $filename.'.'. $extension : $model->$field;
         $fileExists = Yii::$app->awsS3->has($filepath);
 
