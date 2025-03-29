@@ -14,6 +14,20 @@ function d($var)
 }
 
 /**
+ * stringify ActiveRecord errors
+ * stringifyModelErrors($errors);
+ */
+function stringifyModelErrors($errors) {
+    $array = [];
+    foreach ($errors as $error) {
+        foreach ($error as $errorItem) {
+            $array[] = $errorItem;
+        }
+    }
+    return implode(' ', $array);
+}
+
+/**
  * Parses a template argument to the specified value
  * Template variables are defined using double curly brackets: {{ [a-zA-Z] }}
  * Returns the query back once the instances has been replaced
@@ -61,110 +75,6 @@ function parsePhone($phone)
         if (substr($phone,0,1) == '0')  $phone = '+62'.ltrim($phone, '0');
     }
     return $phone;
-}
-
-function areaFields()
-{
-    return [
-        'province_id',
-        'district_id',
-        'subdistrict_id',
-        'village_id',
-    ];
-}
-
-
-/* function uploadFile($model, $field, $uploadedFile, $name = null)
-{
-    $filename          = $model->id .'.'. $uploadedFile->extension;
-    $directory         = Yii::getAlias(Yii::$app->params['fileStorage'].$model->tableName().'/'.$field);
-    $directory_resized = Yii::getAlias(Yii::$app->params['fileStorage_resized'].$model->tableName().'/'.$field);
-
-    if (!file_exists($directory)) mkdir($directory, 0777, true);
-    if (!file_exists($directory_resized)) mkdir($directory_resized, 0777, true);
-
-    if ($uploadedFile->saveAs($directory.'/'.$filename)) {
-        if ($uploadedFile->extension == 'jpg' || $uploadedFile->extension == 'JPG' || $uploadedFile->extension == 'jpeg' || $uploadedFile->extension == 'JPEG' || $uploadedFile->extension == 'png' || $uploadedFile->extension == 'PNG') {
-            // yii\imagine\Image::getImagine()->load(file_get_contents($directory.'/'.$filename))->save($directory_resized.'/'.$filename, ['quality' => 10]);
-            yii\imagine\Image::getImagine()
-            ->open($directory.'/'.$filename)
-            ->thumbnail(new Imagine\Image\Box(600, 600))
-            ->save($directory_resized.'/'.$filename, ['quality' => 90]);
-        }
-        $model->$field = $filename;
-        if (isset($model->uploaded_name)) $model->uploaded_name   = $uploadedFile->name;
-        if ($name && isset($model->uploaded_name)) $model->uploaded_name = $name;
-        if ($model->save()) return true;
-        else dd($model->errors);
-    }
-    return false;
-} */
-
-function downloadFile($model, $field, $filename = null, $resized = true, $forceDownload = false, $product_id = 1)
-{
-    if ($product_id === 2) {
-        if ($model->$field) {
-            $filepath  = Yii::getAlias(Yii::$app->params['fileStorage_resized'] .'../../cpns.appskep.id/uploads_resized/'. $model->tableName().'/'.$field.'/'.$model->$field);
-            if (!$resized || !file_exists($filepath)) $filepath  = Yii::getAlias(Yii::$app->params['fileStorage'] .'../../cpns.appskep.id/uploads/'. $model->tableName().'/'.$field.'/'.$model->$field);
-            $array     = explode('.', $model->$field);
-            $extension = end($array);
-            $filename  = ($filename ?? ($model->name ?? $model->$field)) . '.' . $extension;
-            if (file_exists($filepath)) {
-                if ($forceDownload) return Yii::$app->response->sendFile($filepath, $filename);
-                return Yii::$app->response->sendFile($filepath, $filename, ['inline' => true]);
-            }
-        }
-    } else {
-        if ($model->$field) {
-            $filepath  = Yii::getAlias(Yii::$app->params['fileStorage_resized'] . $model->tableName().'/'.$field.'/'.$model->$field);
-            if (!$resized || !file_exists($filepath)) $filepath  = Yii::getAlias(Yii::$app->params['fileStorage'] . $model->tableName().'/'.$field.'/'.$model->$field);
-            $array     = explode('.', $model->$field);
-            $extension = end($array);
-            $filename  = ($filename ?? ($model->name ?? $model->$field)) . '.' . $extension;
-            if (file_exists($filepath)) {
-                if ($forceDownload) return Yii::$app->response->sendFile($filepath, $filename);
-                return Yii::$app->response->sendFile($filepath, $filename, ['inline' => true]);
-            }
-        }
-    }
-    return Yii::$app->response->redirect(Yii::$app->request->referrer);
-}
-
-
-
-function uploadFileV2($model, $field, $uploadedFile)
-{
-    $filepath = Yii::$app->params['uploadRoot'].$model->tableName().'/'.$field.'/'.$model->id .'.'. $uploadedFile->extension;
-    if (Yii::$app->awsS3->put($filepath, file_get_contents($uploadedFile->tempName))) {
-        $model->$field = $uploadedFile->name;
-        if ($model->save()) return true;
-        else Yii::$app->session->addFlash('error', \yii\helpers\Json::encode($model->errors));
-    }
-    return false;
-}
-
-function downloadFileV2($model, $field, $filename = null, $resized = true, $forceDownload = false, $product_id = 1)
-{
-    if ($model->$field) {
-        $extension  = pathinfo($model->$field, PATHINFO_EXTENSION);
-        $filepath   = Yii::$app->params['uploadRoot'].$model->tableName().'/'.$field.'/'.$model->id.'.'.$extension;
-        $filename   = $filename ? $filename.'.'. $extension : $model->$field;
-        $fileExists = Yii::$app->awsS3->has($filepath);
-
-        if ($fileExists) {
-            $content = Yii::$app->awsS3->read($filepath);
-            return Yii::$app->response->sendContentAsFile($content, $filename, [
-                'inline'   => true, 
-                'mimeType' => Yii::$app->awsS3->getMimetype($filepath),
-            ]);
-        }
-    }
-    return false;
-}
-
-function deleteFileV2($filename)
-{
-    return Yii::$app->awsS3->delete($filename);
 }
 
 function downloadFilePresence($model, $field, $filename = null)
@@ -232,10 +142,3 @@ function parseUserAgent($http_user_agent, $html = false)
     }
     return $http_user_agent;
 }
-
-function imagettfstroketext(&$image, $size, $angle, $x, $y, &$textcolor, &$strokecolor, $fontfile, $text, $px) {
-    for($c1 = ($x-abs($px)); $c1 <= ($x+abs($px)); $c1++)
-        for($c2 = ($y-abs($px)); $c2 <= ($y+abs($px)); $c2++)
-            $bg = imagettftext($image, $size, $angle, $c1, $c2, $strokecolor, $fontfile, $text);
-        return imagettftext($image, $size, $angle, $x, $y, $textcolor, $fontfile, $text);
-    }

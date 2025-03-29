@@ -10,6 +10,9 @@ use Yii;
  * @property int $id
  * @property int $user_id
  * @property int $time
+ * @property string $latitude
+ * @property string $longitude
+ * @property string|null $photo
  *
  * @property User $user
  */
@@ -31,8 +34,10 @@ class Presence extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['user_id', 'time'], 'required'],
+            [['photo'], 'default', 'value' => null],
+            [['user_id', 'time', 'latitude', 'longitude'], 'required'],
             [['user_id', 'time'], 'integer'],
+            [['latitude', 'longitude', 'photo'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -46,6 +51,9 @@ class Presence extends \yii\db\ActiveRecord
             'id' => 'ID',
             'user_id' => 'User ID',
             'time' => 'Time',
+            'latitude' => 'Latitude',
+            'longitude' => 'Longitude',
+            'photo' => 'Photo',
         ];
     }
 

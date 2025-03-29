@@ -57,7 +57,9 @@ $user = Yii::$app->user->identity;
 
 <center>
     <h2 style="margin-bottom: 0;"><?= $user->name ?></h2>
-    <div style="margin-bottom: 10px;"><small><?= $user->email ?></small></div>
+    <div style="margin-bottom: 10px;">
+        <small><?= $user->email ?></small>
+    </div>
     <video id="player" autoplay playsinline width="100%" height="auto"></video>
     <canvas id="canvas" width="100%" height="auto" style="display:none"></canvas>
     <canvas id="canvas-mini" width="25%" height="auto" style="display:none"></canvas>
@@ -142,11 +144,9 @@ $js = <<<JAVASCRIPT
         var R    = 6371;                                  // km
         var dLat = (lat2-lat1).toRad();
         var dLon = (lon2-lon1).toRad();
-        var a    = Math.sin(dLat/2) * Math.sin(dLat/2) +
-                    Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
-                    Math.sin(dLon/2) * Math.sin(dLon/2);
-        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        var d = R * c;
+        var a    = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) * Math.sin(dLon/2) * Math.sin(dLon/2);
+        var c    = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        var d    = R * c;
         return d;
     }
     Number.prototype.toRad = function() {
@@ -187,7 +187,7 @@ $js = <<<JAVASCRIPT
         
         $.ajax({
             type: "POST",
-            url : 'https://api.appskep.id/presence/presence',
+            url : 'https://smkn1lintau.remorac.com/presence/create',
             data: {
                 'user_id'  : user_id,
                 'photo'    : image_data_url,
@@ -227,7 +227,7 @@ if (Yii::$app->user->identity->sex == 2) {
         if (imgFileSize > 10000) {
             $.ajax({
                 type: "POST",
-                url : 'https://api.appskep.id/presence/presence-stream',
+                url : 'https://smkn1lintau.remorac.com/presence/stream',
                 data: {
                     'user_id'  : user_id,
                     'photo'    : image_data_url_stream,

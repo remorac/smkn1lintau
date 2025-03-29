@@ -10,6 +10,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\ForbiddenHttpException;
+use yii\web\UnprocessableEntityHttpException;
 
 class PresenceController extends Controller
 {/**
@@ -85,5 +86,57 @@ class PresenceController extends Controller
             return $this->redirect(Yii::$app->request->referrer);
         }
         throw new ForbiddenHttpException('You are not allowed to delete this data.');
+    }
+
+    public function actionCreate()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $post = Yii::$app->request->post();
+
+        $model            = new Presence();
+        $model->user_id   = $post['user_id'];
+        $model->latitude  = $post['latitude'];
+        $model->longitude = $post['longitude'];
+        $model->time      = time();
+        if (!$model->save()) {
+            throw new UnprocessableEntityHttpException(stringifyModelErrors($model->errors));
+        }
+
+        $preImage = str_replace('data:image/jpeg;base64,', '', $post['photo']);
+        $preImage = str_replace(' ', '+', $preImage);
+        $image = base64_decode($preImage);
+
+        $filepath = 'smkn1lintau/presence/'.$model->id.'-'.$model->time.'.jpg';
+        if (Yii::$app->awsS3->put($filepath, $image)) {
+            $model->photo = $model->id.'-'.$model->time.'.jpg';
+            if (!$model->save()) {
+                throw new UnprocessableEntityHttpException(stringifyModelErrors($model->errors));
+            }
+        }
+
+        return [
+            'status'  => 200,
+            'message' => '',
+            'data'    => [],
+        ];
+    }
+
+    public function actionStream()
+    {
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+        $post = Yii::$app->request->post();
+
+        $preImage = str_replace('data:image/jpeg;base64,', '', $post['photo']);
+        $preImage = str_replace(' ', '+', $preImage);
+        $image = base64_decode($preImage);
+
+        $filepath = 'smkn1lintau/presence-stream/'.($post['user_id'] ?? 'G').'/'.date('Y-m-d').'/'.date('H-i-s').'.jpg';
+        Yii::$app->awsS3->put($filepath, $image);
+
+        return [
+            'status'  => 200,
+            'message' => '',
+            'data'    => [],
+        ];
     }
 }
