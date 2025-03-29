@@ -124,14 +124,14 @@ $js = <<<JAVASCRIPT
             $("#distance").text(distance);
 
             if (distance < .05) {
-                locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; Sedang di Kantor Appskep</span>';
+                locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
                 $('#capture').show();
             } else if (distance > .05) {
-                locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Bukan di Kantor Appskep</span>';
+                locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
                 $('#capture').hide();
             }
 
-            // if (user_id == 1) { $('#capture').show(); }
+            if (user_id == 1) { $('#capture').show(); }
             
             $("#message").html(locationName)
         });
