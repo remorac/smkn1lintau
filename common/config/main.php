@@ -11,6 +11,7 @@ return [
         ],
         'formatter' => [
             'nullDisplay' => '',
-        ]
+        ],
     ],
+    'timeZone' => 'Asia/Jakarta',
 ];
