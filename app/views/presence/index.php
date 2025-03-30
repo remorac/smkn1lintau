@@ -117,14 +117,8 @@ $js = <<<JAVASCRIPT
     
     if (navigator.geolocation) {
         
-        // -0.914418, 100.401882 : Appskep Headquarter
-        // -0.8994557, 100.3505546 : UNP Convention Center
-
-        startPosLat  = -0.914418;
-        startPosLong = 100.401882;
-
-        // startPosLat  = -0.8994557;
-        // startPosLong = 100.3505546;
+        startPosLat  = -0.5040393;
+        startPosLong = 100.7775065;
 
         $("#startLat").text(startPosLat);
         $("#startLon").text(startPosLong);
@@ -136,17 +130,14 @@ $js = <<<JAVASCRIPT
             distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
             $("#distance").text(distance);
 
-            if (distance < .05) {
+            if (distance < .100) {
                 locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
                 $('#capture').show();
-            } else if (distance > .05) {
+            } else if (distance > .100) {
                 locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
                 $('#capture').hide();
             }
 
-            //test only
-            $('#capture').show();
-            
             $("#message").html(locationName)
         });
     }
