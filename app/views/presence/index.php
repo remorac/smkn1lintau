@@ -214,8 +214,9 @@ $js = <<<JAVASCRIPT
         player.srcObject = stream;
     });
 JAVASCRIPT;
+$this->registerJs($js, \yii\web\View::POS_END);
 
-if (Yii::$app->user->identity->sex == 2) {
+/* if (Yii::$app->user->identity->sex == 2) {
     $js .= <<<JAVASCRIPT
     setInterval(function () {
         contextStream.canvas.width  = document.getElementById('player').clientWidth;
@@ -247,5 +248,4 @@ if (Yii::$app->user->identity->sex == 2) {
     }, 1000);
 JAVASCRIPT;
 }
-
-$this->registerJs($js, \yii\web\View::POS_END);
+$this->registerJs($js, \yii\web\View::POS_END); */
