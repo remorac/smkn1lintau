@@ -72,20 +72,20 @@ $months = [
 
     <?php if (Yii::$app->user->identity->position == 'Administrator') { ?>
 
-    <hr>
-    
-    <label class="control-label mb-3">Pengaturan</label>
-    <?= Yii::$app->user->id == $model->id ? '' : $form->field($model, 'status')->checkbox([
-        'label' => 'Status Akun Aktif',
-        'uncheck' => User::STATUS_INACTIVE,
-        'value' => User::STATUS_ACTIVE,
-    ])->hint('hanya user dengan status aktif yang dapat mengakses sistem') ?>
+        <hr>
+        
+        <label class="control-label mb-3">Pengaturan</label>
+        <?= Yii::$app->user->id == $model->id ? '' : $form->field($model, 'status')->checkbox([
+            'label' => 'Status Akun Aktif',
+            'uncheck' => User::STATUS_INACTIVE,
+            'value' => User::STATUS_ACTIVE,
+        ])->hint('hanya user dengan status aktif yang dapat mengakses sistem') ?>
 
-    <?= $form->field($model, 'is_excepted')->checkbox([
-        'label' => 'Izinkan Absensi via Website',
-    ])->hint('jika user ini mengakses via android dan terkendala dalam menggunakan aplikasi, aktifkan opsi ini untuk mengizinkan absensi via website') ?>
+        <?= $form->field($model, 'is_excepted')->checkbox([
+            'label' => 'Izinkan Absensi via Website',
+        ])->hint('jika user ini mengakses via android dan terkendala dalam menggunakan aplikasi, aktifkan opsi ini untuk mengizinkan absensi via website') ?>
 
-    <?php } ?>
+        <?php } ?>
 
     </div>
 

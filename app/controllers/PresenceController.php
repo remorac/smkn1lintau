@@ -42,8 +42,6 @@ class PresenceController extends Controller
         $this->layout = 'blank';
         $flag = 0;
 
-        if (Yii::$app->user->id == 1) $flag = 1;
-
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if ($user_agent == 'SMKN1LintauPresenceApplication') $flag = 1;
 
@@ -51,8 +49,9 @@ class PresenceController extends Controller
         $dd->parse();
         if ($dd->getModel() == 'iPhone') $flag = 1;
 
-        if ($flag) return $this->render('index');
+        if (Yii::$app->user->identity->is_excepted == 1) $flag = 1;
 
+        if ($flag) return $this->render('index');
         return $this->render('download');
     }
 
