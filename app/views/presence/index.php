@@ -133,7 +133,8 @@ $js = <<<JAVASCRIPT
                 $('#capture').hide();
             }
 
-            if (user_id == 1) { $('#capture').show(); }
+            //test only
+            $('#capture').show();
             
             $("#message").html(locationName)
         });
