@@ -120,11 +120,11 @@ class User extends \common\models\User
     {
         if ($html) return [
             10 => '<span class="text-success">Active</span>',
-            0 => '<span class="text-danger">Inactive</span>',
+            9 => '<span class="text-danger">Inactive</span>',
         ];
         return [
             10 => 'Active',
-            0 => 'Inactive',
+            9 => 'Inactive',
         ];
     }
 
