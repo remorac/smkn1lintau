@@ -46,4 +46,10 @@ return [
         ],
     ],
     'params' => $params,
+    'on beforeAction' => function ($event) {
+        if (!Yii::$app->user->isGuest && Yii::$app->user->identity->position != "Administrator" && ($event->action->controller->id == "user" || $event->action->controller->id == "report")) {
+            Yii::$app->response->redirect(['presence/index']);
+            // throw new \yii\web\ForbiddenHttpException('You are not allowed to access this page.');
+        }
+    },
 ];

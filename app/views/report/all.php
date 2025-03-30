@@ -2,9 +2,6 @@
 
 use app\models\Presence;
 use app\models\User;
-use kartik\widgets\Select2;
-use yii\helpers\ArrayHelper;
-use yii\helpers\Url;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -31,7 +28,7 @@ $sequence = 0;
 
 <h2><?= $this->title ?></h2>
 
-<?php $form = ActiveForm::begin(['method' => 'GET', 'action' => ['/presence/report-all']]); ?>
+<?php $form = ActiveForm::begin(['method' => 'GET', 'action' => ['/report/all']]); ?>
     <table>
         <tr>
             <td style="padding-right:8px"><?= Html::dropDownList('month', $month, months(), ['class' => 'form-control']) ?></td>
@@ -58,13 +55,13 @@ $sequence = 0;
             
         <tr>
             <td><?= $sequence ?></td>
-            <td><?= Html::a($user->name, ['/report/one', 'user_id' => $user->id, 'month' => $month, 'year' => $year], ['target' => '_blank']) ?></td>
+            <td><?= Html::a($user->name, ['/report/one', 'user_id' => $user->id, 'month' => $month, 'year' => $year]) ?></td>
 
             <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
                 <?php 
                     $isHoliday = false;
                     $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
-                    if ($dayOfWeek == 6 || $dayOfWeek == 7) $isHoliday = true;
+                    if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
 
                     $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT);
                     $date_formatted =  $year.'-'.$month.'-'.$date_padded;
@@ -75,27 +72,27 @@ $sequence = 0;
                     $gate_out = '16:00';
                 ?>
                 <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
-                    <?php $presences = Presence::find()->where(['user_id' => $user->id])/* ->andWhere(new \yii\db\Expression("from_unixtime(`time`, '%Y-%M-%D') = '".$date_formatted."'")) */->all(); ?>
+                    <?php $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."'"))->all(); ?>
                     <?php if ($presences) { $count[$i]++; ?>
                     <table>
                         <tr>
-                        <?php $presenceFirst = Presence::find()->where(['user_id' => $user->id/* , 'date' => $date_formatted */])/* ->andWhere(['<=', 'time', '12:00:00']) */->orderBy('id ASC')->one(); ?>
+                        <?php $presenceFirst = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."' AND convert_tz(from_unixtime(`time`),'+00:00','+07:00') < '".$date_formatted." 12:00:00'"))->orderBy('id ASC')->one(); ?>
                         <?php if ($presenceFirst) { ?>
                             <td style="padding-right: 16px;">
-                                <?= Yii::$app->formatter->asDatetime($presenceFirst->time, 'short') ?>
+                                <small><?= Yii::$app->formatter->asTime($presenceFirst->time, 'short') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                             </td>
                         <?php } ?>
-                        <?php $presenceLast = Presence::find()->where(['user_id' => $user->id/* , 'date' => $date_formatted */])/* ->andWhere(['>', 'time', '12:00:00']) */->orderBy('id DESC')->one(); ?>
+                        <?php $presenceLast = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."' AND convert_tz(from_unixtime(`time`),'+00:00','+07:00') > '".$date_formatted." 12:00:00'"))->orderBy('id DESC')->one(); ?>
                         <?php if ($presenceLast) { ?>
                             <td style="padding-right: 16px;">
-                                <?= Yii::$app->formatter->asDatetime($presenceLast->time, 'short') ?>
+                                <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'short') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                             </td>
                         <?php } ?>
                         </tr>
                     </table>
-                    <?php if ($presenceFirst && $presenceLast && !$isHoliday) { 
+                    <?php if ($presenceFirst && $presenceLast /* && !$isHoliday */) { 
                         $counter++; $subcount[$i]++; 
                     } ?>
                     <?php if ((int) $year == 2023 && (int) $month == 5 && ($presenceFirst || $presenceLast)) { $counter++; $total+= $benefit_base; $subcount[$i]++; } ?>
@@ -115,9 +112,9 @@ $sequence = 0;
         <th>Jumlah</th>
         <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
         <?php $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT) ?>
-            <th><?= $count[$i] ? $subcount[$i].'/'.$count[$i].' orang' : '-' ?></th>
+            <th><?= $count[$i] ? $subcount[$i].' orang' : '-' ?></th>
         <?php } ?>
-        <th class="text-right"><?= Yii::$app->formatter->asInteger($total) ?></th>
+        <th class="text-right"><?= '' // Yii::$app->formatter->asInteger($total) ?></th>
     </tr>
 </table>
 

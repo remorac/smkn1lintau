@@ -85,6 +85,17 @@ $user = Yii::$app->user->identity;
             <span id="distance">...</span> km
         </p>
     </div>
+    
+    <br>
+    <br>
+    <br>
+    <br>
+    <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
+    . Html::submitButton(
+        'Logout (' . Yii::$app->user->identity->username . ')',
+        ['class' => 'btn btn-link logout text-decoration-none text-danger']
+    )
+    . Html::endForm(); ?>
 </center>
 
 <!-- <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.min.js"></script> -->

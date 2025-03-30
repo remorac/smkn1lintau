@@ -47,7 +47,6 @@ class ReportController extends Controller
         if (!$year) $year = date('Y');
         if (!$month) $month = date('m');
         if ($user_id) $user = User::findOne($user_id);
-        if (!$user_id || !Yii::$app->user->can('superuser')) $user = Yii::$app->user;
 
         return $this->render('one', [
             'year' => $year,
