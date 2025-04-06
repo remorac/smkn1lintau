@@ -57,7 +57,7 @@ class PresenceController extends Controller
 
     public function actionDownload()
     {
-        return Yii::$app->response->sendFile(Yii::getAlias('@uploads/smkn1lintau-presence.apk'));
+        return Yii::$app->response->sendFile(Yii::getAlias('@files/smkn1lintau-presence.apk'));
     }
 
     public function actionView($year = null, $month = null)
