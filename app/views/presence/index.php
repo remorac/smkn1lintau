@@ -115,8 +115,8 @@ $js = <<<JAVASCRIPT
     
     if (navigator.geolocation) {
         
-        startPosLat  = -0.5040393;
-        startPosLong = 100.7775065;
+        startPosLat  = -0.5040400;
+        startPosLong = 100.7784400;
 
         $("#startLat").text(startPosLat);
         $("#startLon").text(startPosLong);
