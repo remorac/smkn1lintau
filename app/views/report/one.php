@@ -88,7 +88,7 @@ $sum_late = 0;
                                 'data-method' => 'post',
                                 'data-confirm' => 'Delete?',
                                 'style' => 'margin-bottom:8px',
-                            ]) : '' ?> &nbsp;
+                            ]) : '' ?>&nbsp;
                             <small><?= Yii::$app->formatter->asTime($presence->time, 'php:H:i') ?>&nbsp;</small>
                             <br><?= Html::img(['download-photo', 'id' => $presence->id], ['width' => '75px', 'style' => 'border-radius: 8px; border: 1px solid #ddd; margin-bottom:8px']); ?>
                             <br><small><?= $presence->status ?></small>
