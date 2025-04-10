@@ -52,7 +52,7 @@ $sequence = 0;
             ?>
             <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></th>
         <?php } ?>
-        <th class="text-end">Jumlah</th>
+        <th class="text-end d-none">Jumlah</th>
     </tr>
 
     <?php foreach ($users as $user) { ?>
@@ -101,10 +101,8 @@ $sequence = 0;
                 </td>
             <?php } ?>
 
-            <td class="text-end">
-                <small>
-                    <?= $counter.' hari' ?>
-                </small>
+            <td class="text-end d-none">
+                <small><?= $counter.' hari' ?></small>
             </td>
         </tr>
     <?php } ?>
@@ -120,7 +118,7 @@ $sequence = 0;
             ?>
             <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $count[$i] ? $subcount[$i].' orang' : '' ?></th>
         <?php } ?>
-        <th class="text-end"><?= '' // Yii::$app->formatter->asInteger($total) ?></th>
+        <th class="text-end d-none"><?= '' // Yii::$app->formatter->asInteger($total) ?></th>
     </tr>
 </table>
 

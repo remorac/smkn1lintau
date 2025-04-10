@@ -104,8 +104,8 @@ $sum_late = 0;
     </div>
 </div>
         
-<div class="box box-primary">
-    <div class="box-body">
+<div class="card d-none">
+    <div class="card-body">
         <b><?= 'Jumlah: '.$counter.' hari' ?></b>
     </div>
 </div>
