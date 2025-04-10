@@ -59,17 +59,11 @@ $sequence = 0;
 
             <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
                 <?php 
+                    $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT);
+                    $date_formatted =  $year.'-'.$month.'-'.$date_padded;
                     $isHoliday = false;
                     $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
                     if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
-
-                    $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT);
-                    $date_formatted =  $year.'-'.$month.'-'.$date_padded;
-
-                    if ($date_formatted >= '2024-10-09') $benefit_base = 28000;
-                    
-                    $gate_in  = '09:00';
-                    $gate_out = '16:00';
                 ?>
                 <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
                     <?php $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."'"))->all(); ?>
@@ -81,6 +75,7 @@ $sequence = 0;
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceFirst->time, 'short') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
+                                <br><small><?= $presenceFirst->status ?></small>
                             </td>
                         <?php } ?>
                         <?php $presenceLast = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."' AND convert_tz(from_unixtime(`time`),'+00:00','+07:00') > '".$date_formatted." 12:00:00'"))->orderBy('id DESC')->one(); ?>
@@ -88,6 +83,7 @@ $sequence = 0;
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'short') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
+                                <br><small><?= $presenceLast->status ?></small>
                             </td>
                         <?php } ?>
                         </tr>

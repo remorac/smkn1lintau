@@ -84,13 +84,14 @@ $sum_late = 0;
                     <?php foreach ($presences as $presence) { ?>
                         <td style="padding-right: 16px;">
                             <small><?= Yii::$app->formatter->asTime($presence->time, 'php:H:i:s') ?>&nbsp;</small>
-                            <?= $deletable ? Html::a('<i class="fa fa-trash"></i>', ['/presence/delete', 'id' => $presence->id], [
-                                'class' => 'btn btn-danger btn-xs', 
+                            <?= $deletable ? Html::a('<i class="bi bi-trash"></i>', ['/presence/delete', 'id' => $presence->id], [
+                                'class' => 'btn btn-outline-danger btn-xs', 
                                 'data-method' => 'post',
                                 'data-confirm' => 'Delete?',
                                 'style' => 'margin-bottom:8px',
                             ]) : '' ?>
                             <br><?= Html::img(['download-photo', 'id' => $presence->id], ['width' => '75px', 'style' => 'border-radius: 8px; border: 1px solid #ddd; margin-bottom:8px']); ?>
+                            <br><small><?= $presence->status ?></small>
                         </td>
                     <?php } ?>
                         </tr>

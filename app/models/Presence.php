@@ -67,4 +67,33 @@ class Presence extends \yii\db\ActiveRecord
         return $this->hasOne(User::class, ['id' => 'user_id']);
     }
 
+    public function getStatus() 
+    {
+        $time = Yii::$app->formatter->asTime($this->time, 'php:H:i:s');
+
+        $type = 'in';
+        if ($time >= '12:00:00') $type = 'out';
+        
+        if ($type == 'in') {
+            $pre = Yii::$app->params['inPre'];
+            $start = Yii::$app->params['inStart'];
+            $end = Yii::$app->params['inEnd'];
+            $post = Yii::$app->params['inPost'];
+        } else if ($type == 'out') {
+            $pre = Yii::$app->params['outPre'];
+            $start = Yii::$app->params['outStart'];
+            $end = Yii::$app->params['outEnd'];
+            $post = Yii::$app->params['outPost'];
+        } else {
+            return 'Invalid Type';
+        }
+
+        $status = '<span class="text-muted">Tidak Hadir</span>';
+        if ($time >= $start && $time <= $end) {
+            $status = '<span class="text-success">Tepat Waktu</span>';
+        } else if ($time > $end && $time <= $post) {
+            $status = '<span class="text-danger">Terlambat</span>';
+        }
+        return $status;
+    }
 }
