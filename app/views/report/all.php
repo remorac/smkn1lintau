@@ -101,7 +101,7 @@ $sequence = 0;
                 </td>
             <?php } ?>
 
-            <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?> text-right">
+            <td class="text-right">
                 <small>
                     <?= $counter.' hari' ?>
                 </small>
@@ -113,7 +113,12 @@ $sequence = 0;
         <th>Jumlah</th>
         <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
         <?php $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT) ?>
-            <th><?= $count[$i] ? $subcount[$i].' orang' : '-' ?></th>
+            <?php 
+                $isHoliday = false;
+                $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
+                if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
+            ?>
+            <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>><?= $count[$i] ? $subcount[$i].' orang' : '-' ?></th>
         <?php } ?>
         <th class="text-right"><?= '' // Yii::$app->formatter->asInteger($total) ?></th>
     </tr>
