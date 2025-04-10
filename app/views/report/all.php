@@ -45,7 +45,12 @@ $sequence = 0;
         <th>User</th>
         <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { $count[$i] = 0; $subcount[$i] = 0; ?>
         <?php $date_padded = str_pad($i, 2, '0', STR_PAD_LEFT) ?>
-            <th><?= $date_padded ?></th>
+            <?php 
+                $isHoliday = false;
+                $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
+                if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
+            ?>
+            <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></th>
         <?php } ?>
         <th class="text-right">Jumlah</th>
     </tr>
@@ -65,7 +70,7 @@ $sequence = 0;
                     $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
                     if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
                 ?>
-                <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
+                <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>">
                     <?php $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."'"))->all(); ?>
                     <?php if ($presences) { $count[$i]++; ?>
                     <table>
@@ -96,7 +101,7 @@ $sequence = 0;
                 </td>
             <?php } ?>
 
-            <td class="text-right">
+            <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?> text-right">
                 <small>
                     <?= $counter.' hari' ?>
                 </small>

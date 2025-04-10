@@ -66,8 +66,8 @@ $sum_late = 0;
             ?>
 
             <tr>
-                <td class="<?= $isHoliday ? 'bg-danger' : '' ?>"><?= $date_padded ?></td>
-                <td class="<?= $isHoliday ? 'bg-danger' : '' ?>">
+                <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></td>
+                <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>">
                     <?php 
                         $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."'"))->all();
                         if (count($presences) > 2) $deletable = true;
@@ -82,7 +82,7 @@ $sum_late = 0;
                     <table>
                         <tr>
                     <?php foreach ($presences as $presence) { ?>
-                        <td class="<?= $isHoliday ? 'bg-danger' : '' ?>" style="padding-right: 16px;">
+                        <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>" style="padding-right: 16px;">
                             <?= $deletable || $presence->status == '<span class="text-muted">Invalid</span>' ? Html::a('<i class="bi bi-trash"></i>', ['/presence/delete', 'id' => $presence->id], [
                                 'class' => 'btn btn-outline-danger btn-xs', 
                                 'data-method' => 'post',
