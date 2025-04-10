@@ -88,9 +88,9 @@ class Presence extends \yii\db\ActiveRecord
             return 'Invalid Type';
         }
 
-        $status = '<span class="text-muted">Tidak Hadir</span>';
+        $status = '<span class="text-muted">Invalid</span>';
         if ($time >= $start && $time <= $end) {
-            $status = '<span class="text-success">Tepat Waktu</span>';
+            $status = '<span class="text-success">Ontime</span>';
         } else if ($time > $end && $time <= $post) {
             $status = '<span class="text-danger">Terlambat</span>';
         }
