@@ -150,3 +150,11 @@ div[role=radiogroup] label, div[role=checkboxgroup] label {
     display: block;
     /* margin-left: 10px; */
 }
+
+@media print
+{    
+    .nav-item, .breadcrumb, .no-print, .no-print *
+    {
+        display: none !important;
+    }
+}
