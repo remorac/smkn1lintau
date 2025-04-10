@@ -91,7 +91,7 @@ class Presence extends \yii\db\ActiveRecord
         $status = '<span class="text-muted">Invalid</span>';
         if ($time >= $start && $time <= $end) {
             $status = '<span class="text-success">Ontime</span>';
-        } else if ($time > $end && $time <= $post) {
+        } else if ($time > $end && $time < $post) {
             $status = '<span class="text-danger">Terlambat</span>';
         }
         return $status;

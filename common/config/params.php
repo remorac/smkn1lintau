@@ -8,12 +8,12 @@ return [
     'user.passwordMinLength' => 8,
 
     'inPre' => '06:00:00',
-    'inStart' => '07:00:00',
-    'inEnd' => '08:00:00',
-    'inPost' => '10:00:00',
+    'inStart' => '06:30:00',
+    'inEnd' => '07:30:00',
+    'inPost' => '12:00:00',
 
-    'outPre' => '15:00:00',
-    'outStart' => '16:00:00',
-    'outEnd' => '18:00:00',
-    'outPost' => '20:00:00',
+    'outPre' => '14:00:00',
+    'outStart' => '15:00:00',
+    'outEnd' => '20:00:00',
+    'outPost' => '24:00:00',
 ];
