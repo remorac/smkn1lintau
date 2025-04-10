@@ -48,7 +48,7 @@ $sum_late = 0;
 
         <table class="table table-striped border">
             <tr>
-                <th class="text-end" style="width: 1px; white-space:nowrap">Date</th>
+                <th style="width: 1px; white-space:nowrap">Date</th>
                 <th>Photo</th>
             </tr>
         <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
@@ -66,7 +66,7 @@ $sum_late = 0;
             ?>
 
             <tr>
-                <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></td>
+                <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?> text-end"><?= $date_padded ?></td>
                 <td class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>">
                     <?php 
                         $presences = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."'"))->all();
