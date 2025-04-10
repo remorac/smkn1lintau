@@ -55,7 +55,7 @@ AppAsset::register($this);
     } else {
         echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
             . Html::submitButton(
-                '<span class="no-print">Logout</span> (' . Yii::$app->user->identity->username . ')',
+                '<span class="d-print-none">Logout</span> (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout text-decoration-none text-danger']
             )
             . Html::endForm();

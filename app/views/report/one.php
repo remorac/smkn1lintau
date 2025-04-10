@@ -36,9 +36,9 @@ $sum_late = 0;
                 <td style="padding-right:8px"><?= Html::dropDownList('user_id', $user->id, ArrayHelper::map($users, 'id', 'name'), ['class' => 'form-control']) ?></td>
                 <td style="padding-right:8px"><?= Html::dropDownList('month', $month, months(), ['class' => 'form-control']) ?></td>
                 <td style="padding-right:8px"><?= Html::dropDownList('year', $year, $years, ['class' => 'form-control']) ?></td>
-                <td><?= Html::submitButton('Refresh', ['class' => 'btn btn-primary']) ?></td>
+                <td><?= Html::submitButton('Refresh', ['class' => 'btn btn-primary d-print-none']) ?></td>
                 <td>&nbsp;</td>
-                <td><?= Html::a('All Users', ['/report/all'], ['class' => 'btn btn-default', 'style' => 'vertical-align: baseline']) ?></td>
+                <td><?= Html::a('All Users', ['/report/all'], ['class' => 'btn btn-default d-print-none', 'style' => 'vertical-align: baseline']) ?></td>
                 <td>&nbsp;</td>
             </tr>
         </table>

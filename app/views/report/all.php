@@ -33,7 +33,7 @@ $sequence = 0;
         <tr>
             <td style="padding-right:8px"><?= Html::dropDownList('month', $month, months(), ['class' => 'form-control']) ?></td>
             <td style="padding-right:8px"><?= Html::dropDownList('year', $year, $years, ['class' => 'form-control']) ?></td>
-            <td><?= Html::submitButton('Refresh', ['class' => 'btn btn-primary no-print']) ?></td>
+            <td><?= Html::submitButton('Refresh', ['class' => 'btn btn-primary d-print-none']) ?></td>
         </tr>
     </table>
 <?php ActiveForm::end(); ?>
@@ -88,7 +88,7 @@ $sequence = 0;
                         <?php if ($presenceLast) { ?>
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'php:H:i') ?></small>
-                                <span class="no-print"><br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd', 'class' => 'no-print']); ?></span>
+                                <span class="d-print-none"><br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd', 'class' => 'd-print-none']); ?></span>
                                 <small><?= $presenceLast->status ?></small>
                             </td>
                         <?php } ?>
