@@ -88,7 +88,7 @@ $sequence = 0;
                         <?php if ($presenceLast) { ?>
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'php:H:i') ?></small>
-                                <div class="no-print"><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?></div>
+                                <span class="no-print"><br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd', 'class' => 'no-print']); ?></span>
                                 <small><?= $presenceLast->status ?></small>
                             </td>
                         <?php } ?>
