@@ -48,7 +48,7 @@ $sum_late = 0;
 
         <table class="table table-striped border">
             <tr>
-                <th style="width: 1px; white-space:nowrap">Date</th>
+                <th class="text-end" style="width: 1px; white-space:nowrap">Date</th>
                 <th>Photo</th>
             </tr>
         <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
