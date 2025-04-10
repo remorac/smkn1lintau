@@ -118,7 +118,7 @@ $sequence = 0;
                 $dayOfWeek = date('N', strtotime($year.'-'.$month.'-'.$i));
                 if (/* $dayOfWeek == 6 ||  */$dayOfWeek == 7) $isHoliday = true;
             ?>
-            <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>><?= $count[$i] ? $subcount[$i].' orang' : '-' ?></th>
+            <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $count[$i] ? $subcount[$i].' orang' : '-' ?></th>
         <?php } ?>
         <th class="text-right"><?= '' // Yii::$app->formatter->asInteger($total) ?></th>
     </tr>
