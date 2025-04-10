@@ -80,7 +80,7 @@ $sequence = 0;
                         <?php if ($presenceFirst) { ?>
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceFirst->time, 'php:H:i') ?></small>
-                                <br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
+                                <span class="d-print-none"><br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?></span>
                                 <br><small><?= $presenceFirst->status ?></small>
                             </td>
                         <?php } ?>
@@ -88,8 +88,8 @@ $sequence = 0;
                         <?php if ($presenceLast) { ?>
                             <td style="padding-right: 16px;">
                                 <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'php:H:i') ?></small>
-                                <span class="d-print-none"><br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd', 'class' => 'd-print-none']); ?></span>
-                                <small><?= $presenceLast->status ?></small>
+                                <span class="d-print-none"><br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?></span>
+                                <br><small><?= $presenceLast->status ?></small>
                             </td>
                         <?php } ?>
                         </tr>
