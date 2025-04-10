@@ -83,7 +83,7 @@ $sum_late = 0;
                         <tr>
                     <?php foreach ($presences as $presence) { ?>
                         <td style="padding-right: 16px;">
-                            <small><?= Yii::$app->formatter->asTime($presence->time, 'php:H:i:s') ?>&nbsp;</small>
+                            <small><?= Yii::$app->formatter->asTime($presence->time, 'php:H:i') ?>&nbsp;</small>
                             <?= $deletable ? Html::a('<i class="bi bi-trash"></i>', ['/presence/delete', 'id' => $presence->id], [
                                 'class' => 'btn btn-outline-danger btn-xs', 
                                 'data-method' => 'post',

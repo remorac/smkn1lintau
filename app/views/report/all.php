@@ -73,7 +73,7 @@ $sequence = 0;
                         <?php $presenceFirst = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."' AND convert_tz(from_unixtime(`time`),'+00:00','+07:00') < '".$date_formatted." 12:00:00'"))->orderBy('id ASC')->one(); ?>
                         <?php if ($presenceFirst) { ?>
                             <td style="padding-right: 16px;">
-                                <small><?= Yii::$app->formatter->asTime($presenceFirst->time, 'short') ?></small>
+                                <small><?= Yii::$app->formatter->asTime($presenceFirst->time, 'php:H:i') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceFirst->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                                 <br><small><?= $presenceFirst->status ?></small>
                             </td>
@@ -81,7 +81,7 @@ $sequence = 0;
                         <?php $presenceLast = Presence::find()->where(['user_id' => $user->id])->andWhere(new \yii\db\Expression("date_format(convert_tz(from_unixtime(`time`),'+00:00','+07:00'), '%Y-%m-%d') = '".$date_formatted."' AND convert_tz(from_unixtime(`time`),'+00:00','+07:00') > '".$date_formatted." 12:00:00'"))->orderBy('id DESC')->one(); ?>
                         <?php if ($presenceLast) { ?>
                             <td style="padding-right: 16px;">
-                                <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'short') ?></small>
+                                <small><?= Yii::$app->formatter->asTime($presenceLast->time, 'php:H:i') ?></small>
                                 <br><?= Html::img(['download-photo', 'id' => $presenceLast->id], ['width' => '50px', 'style' => 'border-radius: 8px; border: 1px solid #ddd']); ?>
                                 <br><small><?= $presenceLast->status ?></small>
                             </td>
