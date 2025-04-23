@@ -8,7 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-advanced',
-    'name' => 'SMKN 1 Lintau - Presence',
+    'name' => 'SMKN 1 Lintau Buo - Presence',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'app\controllers',
     'bootstrap' => ['log'],
