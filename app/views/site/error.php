@@ -19,9 +19,12 @@ $this->title = $name;
 
     <p>
         The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
+        <br>
         Please contact us if you think this is a server error. Thank you.
     </p>
+
+    <?= Html::a('<i class="bi bi-arrow-left"></i> Back', ['/'], [
+        'class' => 'btn btn-primary',
+    ]) ?>
 
 </div>

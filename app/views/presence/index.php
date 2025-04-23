@@ -5,6 +5,8 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
+// $this->context->layout = 'blank';
+
 $this->title = 'SMKN 1 Lintau Buo - Presence';
 $this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->identity;
@@ -88,12 +90,12 @@ $user = Yii::$app->user->identity;
     <br>
     <br>
     <br>
-    <?= Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
+    <?= '' /* Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
     . Html::submitButton(
         'Logout (' . Yii::$app->user->identity->username . ')',
         ['class' => 'btn btn-link logout text-decoration-none text-danger']
     )
-    . Html::endForm(); ?>
+    . Html::endForm(); */ ?>
 </center>
 
 <!-- <script type = "text/javascript" src = "https://code.jquery.com/jquery-2.1.4.min.js"></script> -->

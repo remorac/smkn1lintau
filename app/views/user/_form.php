@@ -63,14 +63,14 @@ $months = [
         'Perempuan' => 'Perempuan',
     ]) ?>
 
-    <?= $form->field($model, 'position')->radioList([
-        'Guru' => 'Guru',
-        'Tata Usaha' => 'Tata Usaha',
-        'Kepala Sekolah' => 'Kepala Sekolah',
-        'Administrator' => 'Administrator',
-    ]) ?>
-
     <?php if (Yii::$app->user->identity->position == 'Administrator') { ?>
+
+        <?= $form->field($model, 'position')->radioList([
+            'Guru' => 'Guru',
+            'Tata Usaha' => 'Tata Usaha',
+            'Kepala Sekolah' => 'Kepala Sekolah',
+            'Administrator' => 'Administrator',
+        ]) ?>
 
         <hr>
         

@@ -9,6 +9,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\ForbiddenHttpException;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -49,6 +50,8 @@ class UserController extends Controller
      */
     public function actionIndex()
     {
+        if (Yii::$app->user->identity->position != "Administrator") return $this->redirect(['/user/view']);
+
         $searchModel = new UserSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -64,8 +67,9 @@ class UserController extends Controller
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id)
+    public function actionView($id = null)
     {
+        if (!$id || Yii::$app->user->identity->position != "Administrator") $id = Yii::$app->user->id;
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -78,6 +82,8 @@ class UserController extends Controller
      */
     public function actionCreate()
     {
+        if (Yii::$app->user->identity->position != "Administrator") return $this->redirect(['/user/view']);
+
         $model = new User();
         $model->scenario = 'create';
 
@@ -107,6 +113,8 @@ class UserController extends Controller
      */
     public function actionUpdate($id)
     {
+        if (Yii::$app->user->identity->position != "Administrator") $id = Yii::$app->user->id;
+
         $model = $this->findModel($id);
         $model->birthdate_day = date('d', strtotime($model->birthdate));
         $model->birthdate_month = date('m', strtotime($model->birthdate));
@@ -132,6 +140,10 @@ class UserController extends Controller
      */
     public function actionDelete($id)
     {
+        if (Yii::$app->user->identity->position != "Administrator") {
+            throw new \yii\web\ForbiddenHttpException('You are not allowed to access this page.');
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

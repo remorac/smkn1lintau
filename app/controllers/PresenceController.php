@@ -39,7 +39,7 @@ class PresenceController extends Controller
 
     public function actionIndex()
     {
-        $this->layout = 'blank';
+        // $this->layout = 'blank';
         $flag = 0;
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];

@@ -16,14 +16,15 @@ $this->params['breadcrumbs'][] = $this->title;
     <h2><?= Html::encode($this->title) ?></h2>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('<i class="bi bi-pencil-square"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
+        <?= Yii::$app->user->identity->position == 'Administrator' ? Html::a('<i class="bi bi-trash"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
                 'method' => 'post',
             ],
-        ]) ?>
+        ]) : '' ?>
+        <?= Html::a('<i class="bi bi-person-raised-hand"></i> Ambil Absen', ['/presence/index', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= DetailView::widget([
@@ -42,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]) ?>
 
-    <?= DetailView::widget([
+    <?= Yii::$app->user->identity->position == 'Administrator' ? DetailView::widget([
         'options' => ['class' => 'table detail-view'],
         'model' => $model,
         'attributes' => [
@@ -57,6 +58,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'html',
             ],
         ],
-    ]) ?>
+    ]) : '' ?>
 
 </div>

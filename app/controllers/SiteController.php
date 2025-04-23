@@ -17,6 +17,7 @@ use common\models\PasswordResetRequestForm;
 use common\models\ResetPasswordForm;
 use common\models\SignupForm;
 use common\models\ContactForm;
+use DeviceDetector\DeviceDetector;
 
 /**
  * Site controller
@@ -78,8 +79,21 @@ class SiteController extends Controller
         if (Yii::$app->user->identity->position == 'Administrator') {
             return $this->redirect(['/user/index']);
         }
-        return $this->redirect(['/presence/index']);
 
+        $flag = 0;
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if ($user_agent == 'SMKN1LintauBuoPresenceApplication') $flag = 1;
+
+        $dd = new DeviceDetector($user_agent);
+        $dd->parse();
+        if ($dd->getModel() == 'iPhone') $flag = 1;
+
+        if ($flag) {
+            // return $this->redirect(['/presence/index']);
+        }
+        return $this->redirect(['/user/view', 'id' => Yii::$app->user->identity->id]);
+        
         return $this->render('index');
     }
 
