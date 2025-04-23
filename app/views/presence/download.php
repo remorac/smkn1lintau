@@ -16,11 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <p>Download dan install apk di device Android utk melanjutkan.</p>
 <br>
 <?= Html::a('Download APK', ['download'], ['class' => 'btn btn-success']) ?>
-&nbsp;
-<?= Html::a('<i class="bi bi-setting"></i> Pengaturan', ['/user/view'], [
-	'class' => 'btn btn-secondary'
-]) ?>
-
 <br>
 <br>
 <?= '' /* Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
