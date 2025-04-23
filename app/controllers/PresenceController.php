@@ -43,7 +43,7 @@ class PresenceController extends Controller
         $flag = 0;
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if ($user_agent == 'SMKN1LintauPresenceApplication') $flag = 1;
+        if ($user_agent == 'SMKN1LintauBuoPresenceApplication') $flag = 1;
 
         $dd = new DeviceDetector($user_agent);
         $dd->parse();
@@ -57,7 +57,7 @@ class PresenceController extends Controller
 
     public function actionDownload()
     {
-        return Yii::$app->response->sendFile(Yii::getAlias('@files/smkn1lintau-presence.apk'));
+        return Yii::$app->response->sendFile(Yii::getAlias('@files/smkn1lintaubuo-presence.apk'));
     }
 
     public function actionView($year = null, $month = null)
@@ -105,7 +105,7 @@ class PresenceController extends Controller
         $preImage = str_replace(' ', '+', $preImage);
         $image = base64_decode($preImage);
 
-        $filepath = 'smkn1lintau/presence/'.$model->id.'-'.$model->time.'.jpg';
+        $filepath = 'smkn1lintaubuo/presence/'.$model->id.'-'.$model->time.'.jpg';
         if (Yii::$app->awsS3->put($filepath, $image)) {
             $model->photo = $model->id.'-'.$model->time.'.jpg';
             if (!$model->save()) {
@@ -129,7 +129,7 @@ class PresenceController extends Controller
         $preImage = str_replace(' ', '+', $preImage);
         $image = base64_decode($preImage);
 
-        $filepath = 'smkn1lintau/presence-stream/'.($post['user_id'] ?? 'G').'/'.date('Y-m-d').'/'.date('H-i-s').'.jpg';
+        $filepath = 'smkn1lintaubuo/presence-stream/'.($post['user_id'] ?? 'G').'/'.date('Y-m-d').'/'.date('H-i-s').'.jpg';
         Yii::$app->awsS3->put($filepath, $image);
 
         return [
