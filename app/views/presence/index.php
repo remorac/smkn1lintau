@@ -5,7 +5,7 @@ use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
-$this->title = 'SMKN 1 Lintau - Presence';
+$this->title = 'SMKN 1 Lintau Buo - Presence';
 $this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->identity;
 ?>

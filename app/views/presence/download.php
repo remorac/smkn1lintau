@@ -12,8 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 <br>
 <br>
 
-<h4>SMKN 1 Lintau Presence App</h4>
-<p>Download dan install apk utk melanjutkan.</p>
+<h4>SMKN 1 Lintau Buo Presence App</h4>
+<p>Download dan install apk di device Android utk melanjutkan.</p>
 <br>
 <?= Html::a('Download APK', ['download'], ['class' => 'btn btn-success btn-lg']) ?>
 <br>
