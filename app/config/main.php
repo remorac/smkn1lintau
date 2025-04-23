@@ -13,6 +13,8 @@ return [
     'controllerNamespace' => 'app\controllers',
     'bootstrap' => ['log'],
     'modules' => [],
+    'language' => 'id-ID',
+    'sourceLanguage' => 'en-US',
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-app',
