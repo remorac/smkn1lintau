@@ -72,15 +72,15 @@ $user = Yii::$app->user->identity;
     <div id="message">detecting location....</div>
 
     <div id="tripmeter">
-        <p style="display:none">
+        <p style="">
             Starting Location (lat, lon): <br />
             <span id="startLat">???</span>&deg;, <span id="startLon">???</span>&deg;
         </p>
-        <p style="display:none">
+        <p style="">
             Current Location (lat, lon): <br />
             <span id="currentLat">locating...</span>&deg;, <span id="currentLon">locating...</span>&deg;
         </p>
-        <p style="display:none">
+        <p style="">
             Distance from starting location: <br />
             <span id="distance">...</span> km
         </p>
@@ -121,9 +121,6 @@ $js = <<<JAVASCRIPT
             startPosLat  = -0.5040400;
             startPosLong = 100.7784400;
             
-            test_startPosLat  = -0.7286017;
-            test_startPosLong = 100.3134769;
-
             $("#startLat").text(startPosLat);
             $("#startLon").text(startPosLong);
         
@@ -135,6 +132,10 @@ $js = <<<JAVASCRIPT
                 $("#distance").text(distance);
 
                 if (distance <= .050) {
+                    test_startPosLat  = -0.7286017;
+                    test_startPosLong = 100.3134769;
+                    $("#startLat").text(test_startPosLat);
+                    $("#startLon").text(test_startPosLong);
                     distance = calculateDistance(test_startPosLat, test_startPosLong,position.coords.latitude, position.coords.longitude)
                 }
 
