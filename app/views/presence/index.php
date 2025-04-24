@@ -65,13 +65,13 @@ $user = Yii::$app->user->identity;
     <canvas id="canvas-mini" width="25%" height="auto" style="display:none"></canvas>
     <canvas id="canvas-stream" width="100%" height="auto" style="display:none"></canvas>
     <div style="padding: 16px;">
-        <button id="capture" style="display:none; margin-bottom: 8px;" class="btn btn-lg btn-block btn-primary">Hadir!</button>
+        <button id="capture" style="display:none; margin-bottom: 8px;" class="btn btn-lg btn-primary w-100">H a d i r !</button>
         <div id="result" class="alert alert-success" style="display:none; margin-bottom: 8px; color:#00a65a !important; background-color:#dff0d8 !important; border-style:dashed !important"><i class="fa fa-check"></i>&nbsp; <?= Yii::$app->user->identity->name ?> sudah hadir</div>
     </div>
 
     <div id="message">detecting location....</div>
 
-    <div id="tripmeter">
+    <div id="tripmeter" class="d-none">
         <p style="">
             Starting Location (lat, lon): <br />
             <span id="startLat">???</span>&deg;, <span id="startLon">???</span>&deg;
