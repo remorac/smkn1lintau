@@ -8,7 +8,7 @@ use yii\helpers\Html;
 // $this->context->layout = 'blank';
 
 $this->title = 'SMKN 1 Lintau Buo - Presence';
-$this->params['breadcrumbs'][] = $this->title;
+// $this->params['breadcrumbs'][] = $this->title;
 $user = Yii::$app->user->identity;
 ?>
 

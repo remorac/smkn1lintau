@@ -38,14 +38,17 @@ AppAsset::register($this);
             'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
         ],
     ]);
-    $menuItems = [
-        // ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'Users', 'url' => ['/user/index']],
-        ['label' => 'Report', 'url' => ['/report/all']],
-        ['label' => 'Presence', 'url' => ['/presence/index']],
-    ];
+    if (!Yii::$app->user->isGuest) {
+        $menuItems = [
+            // ['label' => 'Home', 'url' => ['/site/index']],
+            ['label' => 'Profile', 'url' => ['/user/view']],
+            ['label' => 'Users', 'url' => ['/user/index'], 'visible' => Yii::$app->user->identity->position == 'Administrator'],
+            ['label' => 'Report', 'url' => ['/report/all'], 'visible' => Yii::$app->user->identity->position == 'Administrator'],
+            ['label' => 'Presence', 'url' => ['/presence/index']],
+        ];
+    }
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems = ['label' => 'Login', 'url' => ['/site/login']];
     }     
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav me-auto mb-2 mb-md-0'],
