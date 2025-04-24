@@ -144,6 +144,11 @@ class UserController extends Controller
             throw new \yii\web\ForbiddenHttpException('You are not allowed to access this page.');
         }
 
+        if (Yii::$app->user->id == $id) {
+            Yii::$app->session->addFlash('error', 'You cannot delete your own account.');
+            return $this->redirect(Yii::$app->request->referrer);
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
