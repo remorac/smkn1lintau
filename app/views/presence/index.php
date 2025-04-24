@@ -130,10 +130,10 @@ $js = <<<JAVASCRIPT
             distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
             $("#distance").text(distance);
 
-            if (distance <= .100) {
+            if (distance <= .050) {
                 locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
                 $('#capture').show();
-            } else if (distance > .100) {
+            } else if (distance > .050) {
                 locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
                 $('#capture').hide();
             }
