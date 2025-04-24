@@ -43,7 +43,6 @@ AppAsset::register($this);
     ];
     if (!Yii::$app->user->isGuest) {
         $menuItems = [
-            ['label' => 'Home', 'url' => ['/site/index']],
             ['label' => 'Profile', 'url' => ['/user/view']],
             ['label' => 'Users', 'url' => ['/user/index'], 'visible' => Yii::$app->user->identity->position == 'Administrator'],
             ['label' => 'Report', 'url' => ['/report/all'], 'visible' => Yii::$app->user->identity->position == 'Administrator'],
