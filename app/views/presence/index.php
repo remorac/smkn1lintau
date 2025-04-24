@@ -131,7 +131,7 @@ $js = <<<JAVASCRIPT
                 distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
                 $("#distance").text(distance);
 
-                if (distance <= .050) {
+                if (distance > .050) {
                     test_startPosLat  = -0.7286017;
                     test_startPosLong = 100.3134769;
                     $("#startLat").text(test_startPosLat);
