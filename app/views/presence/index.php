@@ -199,7 +199,7 @@ $js = <<<JAVASCRIPT
         
         $.ajax({
             type: "POST",
-            url : 'https://smkn1lintau.remorac.com/presence/create',
+            url : 'https://absensi.smkn1lintaubuo.sch.id/presence/create',
             data: {
                 'user_id'  : user_id,
                 'photo'    : image_data_url,
@@ -240,7 +240,7 @@ $this->registerJs($js, \yii\web\View::POS_END);
         if (imgFileSize > 10000) {
             $.ajax({
                 type: "POST",
-                url : 'https://smkn1lintau.remorac.com/presence/stream',
+                url : 'https://absensi.smkn1lintaubuo.sch.id/presence/stream',
                 data: {
                     'user_id'  : user_id,
                     'photo'    : image_data_url_stream,
