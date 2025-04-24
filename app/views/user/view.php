@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'method' => 'post',
             ],
         ]) : '' ?>
-        <?= Html::a('<i class="bi bi-person-raised-hand"></i> Ambil Absen', ['/presence/index', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= $model->id == Yii::$app->user->id ? Html::a('<i class="bi bi-person-raised-hand"></i> Ambil Absen', ['/presence/index', 'id' => $model->id], ['class' => 'btn btn-primary']) : '' ?>
     </p>
 
     <?= DetailView::widget([
