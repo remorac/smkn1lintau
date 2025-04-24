@@ -145,9 +145,12 @@ a {
 }
 
 .btn-xs {
-    --bs-btn-padding-y: .15rem; 
-    --bs-btn-padding-x: .5rem; 
+    --bs-btn-padding-y: .08rem; 
+    --bs-btn-padding-x: .4rem; 
     --bs-btn-font-size: .75rem;
+}
+.btn-xs .bi {
+    vertical-align: sub;
 }
 
 .detail-view {
