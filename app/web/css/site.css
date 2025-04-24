@@ -145,12 +145,17 @@ a {
 }
 
 .btn-xs {
-    --bs-btn-padding-y: .08rem; 
-    --bs-btn-padding-x: .4rem; 
+    --bs-btn-padding-y: .0rem; 
+    --bs-btn-padding-x: .5rem; 
     --bs-btn-font-size: .75rem;
 }
 .btn-xs .bi {
     vertical-align: sub;
+}
+
+.action-column {
+    padding-top: 6px !important;
+    padding-bottom: 6px !important;
 }
 
 .detail-view {

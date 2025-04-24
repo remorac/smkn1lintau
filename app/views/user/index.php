@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'urlCreator' => function ($action, User $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 },
-                'contentOptions' => ['class' => 'fit nowrap'],
+                'contentOptions' => ['class' => 'fit nowrap action-column'],
                 'buttons' => [
                     'view' => function ($url) {
                         return Html::a('<i class="bi bi-eye-fill"></i>', $url, ['data-pjax' => 0, 'class' => 'btn btn-outline-info btn-xs']);
