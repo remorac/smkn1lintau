@@ -108,39 +108,47 @@ $js = <<<JAVASCRIPT
     user_id = "{$user_id}";
     
     window.onload = function() {
-    var startPos;
-    var startPosLat;
-    var startPosLong;
-    var distance;
+        var startPos;
+        var startPosLat;
+        var startPosLong;
+        var distance;
 
-    var locationName = '(please allow location access)';
-    
-    if (navigator.geolocation) {
+        var locationName = '(please allow location access)';
         
-        startPosLat  = -0.5040400;
-        startPosLong = 100.7784400;
+        if (navigator.geolocation) {
+            
+            distance = 1;
+            startPosLat  = -0.5040400;
+            startPosLong = 100.7784400;
+            
+            test_startPosLat  = -0.7286017;
+            test_startPosLong = 100.3134769;
 
-        $("#startLat").text(startPosLat);
-        $("#startLon").text(startPosLong);
-    
-        navigator.geolocation.watchPosition(function(position) {
-            $("#currentLat").text(position.coords.latitude);
-            $("#currentLon").text(position.coords.longitude);
+            $("#startLat").text(startPosLat);
+            $("#startLon").text(startPosLong);
+        
+            navigator.geolocation.watchPosition(function(position) {
+                $("#currentLat").text(position.coords.latitude);
+                $("#currentLon").text(position.coords.longitude);
 
-            distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
-            $("#distance").text(distance);
+                distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
+                $("#distance").text(distance);
 
-            if (distance <= .050) {
-                locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
-                $('#capture').show();
-            } else if (distance > .050) {
-                locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
-                $('#capture').hide();
-            }
+                if (distance <= .050) {
+                    distance = calculateDistance(test_startPosLat, test_startPosLong,position.coords.latitude, position.coords.longitude)
+                }
 
-            $("#message").html(locationName)
-        });
-    }
+                if (distance <= .050) {
+                    locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
+                    $('#capture').show();
+                } else if (distance > .050) {
+                    locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
+                    $('#capture').hide();
+                }
+
+                $("#message").html(locationName)
+            });
+        }
     };
     
     function calculateDistance(lat1, lon1, lat2, lon2) {
