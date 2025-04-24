@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('<i class="bi bi-pencil-square"></i> Update', ['update', 'id' => $model->id], ['class' => 'btn btn-warning']) ?>
-        <?= Yii::$app->user->identity->position == 'Administrator' ? Html::a('<i class="bi bi-trash"></i> Delete', ['delete', 'id' => $model->id], [
+        <?= Yii::$app->user->identity->position == 'Administrator' && $model->id != Yii::$app->user->id ? Html::a('<i class="bi bi-trash"></i> Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
