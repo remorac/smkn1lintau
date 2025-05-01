@@ -125,7 +125,7 @@ $sequence = 0;
 </div>
 
 <style>
-    @media screen {
+    /* @media screen {
         .table-notresponsive {
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
@@ -134,4 +134,10 @@ $sequence = 0;
     .nowrap {
         white-space: nowrap;
     }
+    th:first-child, td:first-child
+    {
+        position:sticky;
+        left:0px;
+        background-color:grey;
+    } */
 </style>
