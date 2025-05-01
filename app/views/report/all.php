@@ -53,7 +53,7 @@ $sequence = 0;
             ?>
             <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></th>
         <?php } ?>
-        <th class="text-end border-0" style="visibility: hidden;">JML</th>
+        <th class="text-end" style="visibility: hidden; border: none">JML</th>
     </tr>
 
     <?php foreach ($users as $user) { ?>
