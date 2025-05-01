@@ -39,7 +39,7 @@ $sequence = 0;
 <?php ActiveForm::end(); ?>
 
 <br>
-<div class="table-notresponsive me-8 pe-8">
+<div class="table-responsive me-8 pe-8">
 <table class="table table-condensed table-bordered table-striped">
     <tr>
         <th>#</th>
@@ -123,3 +123,25 @@ $sequence = 0;
     </tr>
 </table>
 </div>
+
+<style>
+    @media print {
+        .table-responsive {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .table-responsive > table {
+            margin: 0;
+            padding: 0;
+        }
+        .table-responsive > table > thead > tr > th {
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    }
+    .nowrap {
+        white-space: nowrap;
+    }
+</style>
