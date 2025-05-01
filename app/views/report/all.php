@@ -39,7 +39,7 @@ $sequence = 0;
 <?php ActiveForm::end(); ?>
 
 <br>
-<div class="table-notresponsive me-8">
+<div class="table-notresponsive me-8 pe-8">
 <table class="table table-condensed table-bordered table-striped">
     <tr>
         <th>#</th>
@@ -53,7 +53,7 @@ $sequence = 0;
             ?>
             <th class="<?= $isHoliday ? 'bg-danger text-light' : '' ?>"><?= $date_padded ?></th>
         <?php } ?>
-        <th class="text-end" style="visibility: hidden; border: none">JML</th>
+        <th class="text-end d-none">JML</th>
     </tr>
 
     <?php foreach ($users as $user) { ?>
