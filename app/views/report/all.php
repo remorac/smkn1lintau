@@ -61,7 +61,7 @@ $sequence = 0;
             
         <tr>
             <td><?= $sequence ?></td>
-            <td><?= Html::a($user->name, ['/report/one', 'user_id' => $user->id, 'month' => $month, 'year' => $year]) ?></td>
+            <td class="nowrap"><?= Html::a($user->name, ['/report/one', 'user_id' => $user->id, 'month' => $month, 'year' => $year]) ?></td>
 
             <?php for ($i = 1; $i <= date('t', strtotime($year.'-'.$month.'-1')); $i++) { ?>
                 <?php 
