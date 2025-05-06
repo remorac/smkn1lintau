@@ -60,7 +60,7 @@ $user = Yii::$app->user->identity;
     <div style="margin-bottom: 10px;">
         <small><?= $user->email ?></small>
     </div>
-    <video id="player" autoplay playsinline width="100%" height="auto"></video>
+    <video id="player" autoplay playsinline width="100%" height="auto" style="border:1px solid #ddd; border-radius: 8px"></video>
     <canvas id="canvas" width="100%" height="auto" style="display:none"></canvas>
     <canvas id="canvas-mini" width="25%" height="auto" style="display:none"></canvas>
     <canvas id="canvas-stream" width="100%" height="auto" style="display:none"></canvas>
