@@ -85,8 +85,17 @@ $user = Yii::$app->user->identity;
             <span id="distance">...</span> km
         </p>
     </div>
-    
+
     <br>
+
+    <?= Html::a('Reload', ['/presence/index'], [
+        'class' => 'btn btn-lg btn-secondary w-100',
+        'data'  => [
+            'method' => 'post',
+            'confirm' => 'Are you sure you want to reload?',
+        ],
+    ]) ?>
+    
     <br>
     <br>
     <br>
