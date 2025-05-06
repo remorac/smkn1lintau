@@ -82,7 +82,7 @@ $user = Yii::$app->user->identity;
         </p>
         <p class="">
             Distance: <br />
-            <span id="distance">...</span> km
+            <span id="distance">...</span>m
         </p>
     </div>
 
@@ -134,7 +134,7 @@ $js = <<<JAVASCRIPT
                 $("#currentLon").text(position.coords.longitude);
 
                 distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
-                $("#distance").text(distance);
+                $("#distance").text(parseInt(distance*1000));
 
                 /* if (user_id == 1 && distance > .100) {
                     test_startPosLat  = -0.7286017;
