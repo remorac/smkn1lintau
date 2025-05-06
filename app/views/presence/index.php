@@ -131,7 +131,7 @@ $js = <<<JAVASCRIPT
                 distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
                 $("#distance").text(distance);
 
-                /* if (user_id == 1 && distance > .050) {
+                /* if (user_id == 1 && distance > .100) {
                     test_startPosLat  = -0.7286017;
                     test_startPosLong = 100.3134769;
                     $("#startLat").text(test_startPosLat);
@@ -139,10 +139,10 @@ $js = <<<JAVASCRIPT
                     distance = calculateDistance(test_startPosLat, test_startPosLong,position.coords.latitude, position.coords.longitude)
                 } */
 
-                if (distance <= .050) {
+                if (distance <= .100) {
                     locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').show();
-                } else if (distance > .050) {
+                } else if (distance > .100) {
                     locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda tidak sedang di Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').hide();
                 }
