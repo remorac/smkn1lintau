@@ -72,16 +72,16 @@ $user = Yii::$app->user->identity;
     <div id="message">detecting location....</div>
 
     <div id="tripmeter" class="">
-        <p style="">
+        <p class="d-none">
             Starting Location (lat, lon): <br />
             <span id="startLat">???</span>&deg;, <span id="startLon">???</span>&deg;
         </p>
-        <p style="">
+        <p class="d-none">
             Current Location (lat, lon): <br />
             <span id="currentLat">locating...</span>&deg;, <span id="currentLon">locating...</span>&deg;
         </p>
-        <p style="">
-            Distance from starting location: <br />
+        <p class="">
+            Distance: <br />
             <span id="distance">...</span> km
         </p>
     </div>
@@ -143,7 +143,7 @@ $js = <<<JAVASCRIPT
                     locationName = '<span class="text-success"><i class="bi bi-building-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').show();
                 } else if (distance > .100) {
-                    locationName = '<span class="text-danger"><i class="bi bi-building-x"></i>&nbsp; Anda tidak sedang berada <br>di Kantor SMKN 1 Lintau Buo</span>';
+                    locationName = '<span class="text-danger"><i class="bi bi-building-x"></i>&nbsp; Bukan Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').hide();
                 }
 
