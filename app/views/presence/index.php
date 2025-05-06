@@ -131,13 +131,13 @@ $js = <<<JAVASCRIPT
                 distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
                 $("#distance").text(distance);
 
-                if (user_id == 1 && distance > .050) {
+                /* if (user_id == 1 && distance > .050) {
                     test_startPosLat  = -0.7286017;
                     test_startPosLong = 100.3134769;
                     $("#startLat").text(test_startPosLat);
                     $("#startLon").text(test_startPosLong);
                     distance = calculateDistance(test_startPosLat, test_startPosLong,position.coords.latitude, position.coords.longitude)
-                }
+                } */
 
                 if (distance <= .050) {
                     locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
