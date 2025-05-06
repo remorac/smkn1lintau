@@ -90,10 +90,6 @@ $user = Yii::$app->user->identity;
 
     <?= Html::a('Reload', ['/presence/index'], [
         'class' => 'btn btn-secondary w-100',
-        'data'  => [
-            'method' => 'post',
-            'confirm' => 'Are you sure you want to reload?',
-        ],
     ]) ?>
     
     <br>
