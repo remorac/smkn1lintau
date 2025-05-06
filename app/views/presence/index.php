@@ -140,10 +140,10 @@ $js = <<<JAVASCRIPT
                 } */
 
                 if (distance <= .100) {
-                    locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
+                    locationName = '<span class="text-success"><i class="bi bi-building-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').show();
                 } else if (distance > .100) {
-                    locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda tidak sedang di Kantor SMKN 1 Lintau Buo</span>';
+                    locationName = '<span class="text-danger"><i class="bi bi-building-x"></i>&nbsp; Anda tidak sedang berada <br>di Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').hide();
                 }
 
