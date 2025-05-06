@@ -71,7 +71,7 @@ $user = Yii::$app->user->identity;
 
     <div id="message">detecting location....</div>
 
-    <div id="tripmeter" class="d-none">
+    <div id="tripmeter" class="">
         <p style="">
             Starting Location (lat, lon): <br />
             <span id="startLat">???</span>&deg;, <span id="startLon">???</span>&deg;
@@ -131,7 +131,7 @@ $js = <<<JAVASCRIPT
                 distance = calculateDistance(startPosLat, startPosLong,position.coords.latitude, position.coords.longitude)
                 $("#distance").text(distance);
 
-                if (distance > .050) {
+                if (user_id == 1 && distance > .050) {
                     test_startPosLat  = -0.7286017;
                     test_startPosLong = 100.3134769;
                     $("#startLat").text(test_startPosLat);
@@ -140,10 +140,10 @@ $js = <<<JAVASCRIPT
                 }
 
                 if (distance <= .050) {
-                    locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; SMKN 1 Lintau</span>';
+                    locationName = '<span class="text-success"><i class="fa fa-check"></i>&nbsp; Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').show();
                 } else if (distance > .050) {
-                    locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda sedang tidak di SMKN 1 Lintau</span>';
+                    locationName = '<span class="text-danger"><i class="fa fa-times"></i>&nbsp; Anda tidak sedang di Kantor SMKN 1 Lintau Buo</span>';
                     $('#capture').hide();
                 }
 
