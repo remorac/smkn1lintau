@@ -82,7 +82,7 @@ $user = Yii::$app->user->identity;
         </p>
         <p class="">
             Distance: <br />
-            <span id="distance">...</span>m
+            <b><span id="distance">...</span></b>m
         </p>
     </div>
 
