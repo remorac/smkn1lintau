@@ -77,9 +77,9 @@ AppAsset::register($this);
     </div>
 </main>
 
-<footer class="footer mt-auto py-3 text-muted bg-light">
+<footer class="footer mt-auto py-3 text-white bg-secondary">
     <div class="container">
-        <p class="float-start">SMKN 1 Lintau Buo &copy; <?= date('Y') ?></p>
+        <p class="float-start mb-0">SMKN 1 Lintau Buo &copy; <?= date('Y') ?></p>
         <p class="float-end"><?=  '' // Yii::powered() ?></p>
     </div>
 </footer>
