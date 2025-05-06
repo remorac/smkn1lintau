@@ -25,10 +25,6 @@ $user = Yii::$app->user->identity;
         padding: 16px;
     }
 
-    p {
-        color: #222;
-    }
-
     #message {
         padding-left: 16px;
         padding-right: 16px;
